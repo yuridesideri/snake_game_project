@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/reset.css">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Snake Game</title>
+</head>
+<body>
+    <section id="game">
+        <section id="new-game" class="new-game">
+            <header>
+                <h1>SNAKE GAME</h1>
+            </header>
+            <main>
+                <div class="new-game__game-screen">
+                    <section class="new-game__difficulty">
+                        <div class="difficulty-levels">Easy</div>
+                        <div class="difficulty-levels">Medium</div>
+                        <div class="difficulty-levels">Hard</div>
+                    </section>
+                    <section onclick="changeScreen('in-game')" class="start-game-button">
+                        <button>Start Game</button>
+                    </section>
+                </div>
+            </main>
+        </section>
+        <section class="hidden in-game" id="in-game">
+            <div class="grid-game">
+
+            </div>
+        </section>
+        <section class="hidden end-game" id="end-game">
+
+        </section>
+        <script src="src/script.js"></script>
+    </section>
+</body>
+</html>

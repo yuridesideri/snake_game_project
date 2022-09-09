@@ -1,0 +1,111 @@
+.new-game{
+    height: 100vh;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
+header>h1{
+    margin-top: 100px;
+}
+
+.new-game__game-screen{
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    margin-top: 10vh;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.new-game__difficulty{
+    height: 10%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 20%;
+    width: 70%;
+    justify-content: space-between;
+    cursor: default;
+    user-select: none;
+}
+.difficulty-levels{
+    background-color: black;
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.start-game-button{
+    margin-top: 50%;
+    width: 30%;
+    background-color: blue;
+    height: 9%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.start-game-button>button{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 5px;
+}
+
+
+.in-game{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.grid-game{
+    width: 50vh;
+    height: 50vh;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    border: solid 4px white;
+}
+ .grid-child-1{
+    background-color: blue;
+ }
+ .grid-child-2{
+    background-color: red;
+ }
+ .grid-child-4{
+    background-color: green;
+ }
+ .grid-child-3{
+    background-color: aqua;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hidden {
+    display: none;
+}
