@@ -31,9 +31,18 @@
             <div class="grid-game">
 
             </div>
+            <div class="under-game-section">
+            <div onclick="changeEvent(this)" class="button-outter keyboard-input">
+                <div class="button-inner"></div>
+            </div>
+            <div class="score-div"></div>
+            </div>
         </section>
-        <section class="hidden end-game" id="end-game">
-
+        <section class="end-game hidden" id="end-game">
+            <div class="end-game-text-box">
+                <h1>You Lost, but Well Played!</h1>
+                <button onclick="changeScreen('new-game')" class="play-again-button">Play Again?</button>
+            </div>
         </section>
         <script src="src/script.js"></script>
     </section>
