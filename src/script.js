@@ -25,7 +25,8 @@ function changeScreen(screen){
 
 const user = {
     gameUpdate: '',
-    gameScore: 0
+    gameScore: 0,
+    inputType: 'keyboard-input'
 }
 
 const grid = {
@@ -103,12 +104,39 @@ const snake = {
         snake.eat ? snake.eat = false : snake.body.pop();
     },
     changeDirection: function (e){
-        const direction = e.key === 'a'? [0, -1] : e.key === 's'? [1,0] : e.key === 'd'? [0,1] : e.key === 'w'? [-1,0] : null
-        if (direction === null)
-        {
-            return;
+        let direction;
+        if (user.inputType === 'keyboard-input' ){
+            direction = e.key === 'a'? [0, -1] : e.key === 's'? [1,0] : e.key === 'd'? [0,1] : e.key === 'w'? [-1,0] : null
+            if (direction === null)
+            {
+                return;
+            }
         }
-        if (snake.head[0] + direction[0] === snake.body[0][0] && snake.head[1] + direction[1] === snake.body[0][1])
+        if (user.inputType === 'mouse-input')
+        {
+            try{
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const snakePositions = document.querySelector(`.grid-cell-${snake.head[0]}-${snake.head[1]}`).getBoundingClientRect();
+            const snakeX = (snakePositions.right + snakePositions.left)/2;
+            const snakeY = (snakePositions.top + snakePositions.bottom)/2;
+            const predominantDirection = Math.abs(mouseX - snakeX) > Math.abs(mouseY-snakeY)? 'horizontal' : 'vertical';
+            const xResultant = mouseX - snakeX >= 0 ? 1 : -1;
+            const yResultant = mouseY - snakeY >= 0 ? 1 : -1;
+            if (predominantDirection === 'vertical')
+            {
+                direction = [yResultant, 0];
+                console.log('vertical');
+            }
+            if (predominantDirection === 'horizontal')
+            {
+                console.log('horizontal');
+                direction = [0, xResultant];
+            }
+            }catch{}
+                
+        }
+        if (direction === undefined || (snake.head[0] + direction[0] === snake.body[0][0] && snake.head[1] + direction[1] === snake.body[0][1]))
         {
             return;
         }
@@ -172,7 +200,7 @@ const apple = {
 function startGame(){
     const nRows = 20;
     const nColumns = 20;
-    const difficulty = 150;
+    const difficulty = 500;
     grid.start(nRows, nColumns);
     render.createRenderGrid(nRows, nColumns);
     render.renderSnake(snake.head, snake.body);
@@ -183,6 +211,17 @@ function startGame(){
 
 function changeEvent(el)
 {
-    const elementClass = el.getAttribute()
-    el.classList.remove('')
+    window.removeEventListener('keydown', snake.changeDirection);
+    document.removeEventListener('mousemove', snake.changeDirection);
+    const elementClass = el.getAttribute('class').split(' ')[1];
+    el.classList.remove(elementClass);
+    elementClass === 'keyboard-input'?
+        el.classList.add('mouse-input' ):
+        el.classList.add('keyboard-input')
+    
+    user.inputType = el.getAttribute('class').split(' ')[1];
+    user.inputType === 'keyboard-input' ? 
+    window.addEventListener('keydown', snake.changeDirection):
+    document.addEventListener('mousemove', snake.changeDirection)
+    console.log(inputType);
 }
